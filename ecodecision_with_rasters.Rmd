@@ -3,8 +3,7 @@ title: "Species distribution modelling with Poisson point processes"
 author: "Ian Flint and Roozbeh Valavi"
 date: "`r Sys.Date()`"
 output: 
-  rmarkdown::html_vignette:
-    fig_caption: yes
+  pdf_document
 vignette: >
   %\VignetteIndexEntry{Species distribution modelling with Poisson point processes}
   %\VignetteEngine{knitr::rmarkdown}
