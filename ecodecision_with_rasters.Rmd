@@ -1,11 +1,11 @@
 ---
-title: "Species distribution modelling with Poisson point processes"
+title: "A tutorial for using the ecodecision package with rasters."
 author: "Ian Flint and Roozbeh Valavi"
 date: "`r Sys.Date()`"
 output: 
   pdf_document
 vignette: >
-  %\VignetteIndexEntry{Species distribution modelling with Poisson point processes}
+  %\VignetteIndexEntry{tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
