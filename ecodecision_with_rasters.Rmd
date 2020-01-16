@@ -31,7 +31,7 @@ remove(list = ls())
 set.seed(42)
 ```
 
-We begin by setting up the data.
+We begin by setting up the data in the raster format.
 
 ```{r}
 grid_dir <- "data/grids"
@@ -41,22 +41,29 @@ vars <- list.files(grid_dir, pattern = ".tif$", full.names = TRUE)
 ibra <- st_read("data/ibraone.shp", crs = 4283, quiet = TRUE)
 
 # read the raster layers as a raster stack
-nsw_stack <- stack(vars)
+covariates_raster <- stack(vars)
 
 # set the coordinate system
-crs(nsw_stack) <- CRS("+init=epsg:4283")
+crs(covariates_raster) <- CRS("+init=epsg:4283")
 ```
 
 We then convert the data to the format used by `spatstat`.
 
 ```{r}
-covariates <- lapply(as.list(nsw_stack), function(element) maptools::as.im.RasterLayer(element))
+covariates <- lapply(as.list(covariates_raster), 
+                     function(element) maptools::as.im.RasterLayer(element))
 ```
 
 ## Species data
 The species data comes from Fithian and others (2015).
 
-All the species starts with `euca` ...
+First, create a `spatstat::owin` that models the observation region.
+
+```{r}
+window <- spatstat::as.owin(covariates[[1]])
+```
+
+Second, construct the `spatstat::ppp` representing the point configuration.
 
 ```{r}
 # load Fithian et al (2015) species data
@@ -64,7 +71,7 @@ load("data/moddat.RData")
 
 configuration <- spatstat::ppp(eucacine_moddat$long, 
                                eucacine_moddat$lat, 
-                               window = as.owin(covariates[[1]]))
+                               window = window)
 ```
 
 # Using ecodecision
