@@ -50,11 +50,11 @@ crs(nsw_stack) <- CRS("+init=epsg:4283")
 We then convert the data to the format used by `spatstat`.
 
 ```{r}
-covariates <- lapply(as.list(nsw_stack), function(l) maptools::as.im.RasterLayer(l))
+covariates <- lapply(as.list(nsw_stack), function(element) maptools::as.im.RasterLayer(element))
 ```
 
 ## Species data
-The species data comes form Fithian and others (2015).
+The species data comes from Fithian and others (2015).
 
 All the species starts with `euca` ...
 
@@ -71,9 +71,8 @@ configuration <- spatstat::ppp(eucacine_moddat$long,
 
 ```{r}
 detection_probability <- 0.3
-ecodecision::accuracy_improvement(150, -35,
-                                  configuration,
-                                  environmental_covariates = covariates,
-                                  detection_probability = detection_probability)
+ecodecision::optimal_location(configuration,
+                              environmental_covariates = covariates,
+                              detection_probability = detection_probability)
 ```
 
