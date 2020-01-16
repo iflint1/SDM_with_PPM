@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, tidy.opts=list(width.cutoff=80), fig.align="center", message = FALSE, warning = FALSE, fig.height=5, fig.width=5)
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, tidy.opts=list(width.cutoff=80), fig.align="center", message = FALSE, warning = FALSE, fig.height=5, fig.width=5, tidy = FALSE)
 ```
 
 ## Species distribution modelling
